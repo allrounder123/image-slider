@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = 'stylesheet' href = "style.css" /> 
+</head>
+<h1>IMAGE SLIDER</h1>
+<body>
+    <div class="center-box">
+    <img id = "pic" src = "./comp1img.jpeg" alt = " computer desktop picture" />
+    <div>
+    <button onclick="next()" >next</button>
+    <button onclick="prev()" >previous</button>
+    </div>
+    </div>
+
+
+    <script>
+              const images = [
+            "./comp1img.jpeg",
+            "./comp2image.jpeg",
+            "./comp3image.jpeg",
+            "./comp5img.jpeg",
+            "./comp6img.jpeg",
+            "./comp7img.jpeg"
+        ];
+
+        let currentIndex = 0; // starting image
+
+        const pic = document.getElementById("pic");
+
+        function next() {
+            currentIndex++;
+            if (currentIndex >= images.length) {
+                currentIndex = 0; // loop back to first image
+            }
+            pic.src = images[currentIndex];
+        }
+
+        function prev() {
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1; // loop to last image
+            }
+            pic.src = images[currentIndex];
+        }
+    </script>
+</body>
+</html> 
