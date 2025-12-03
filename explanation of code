@@ -1,0 +1,103 @@
+1️⃣ HTML Structure
+<h1>IMAGE SLIDER</h1>
+<div class="center-box">
+    <img id="pic" src="./comp1img.jpeg" alt="computer desktop picture" />
+    <div>
+        <button onclick="next()">next</button>
+        <button onclick="prev()">previous</button>
+    </div>
+</div>
+
+
+<h1>: The title “IMAGE SLIDER”.
+
+<div class="center-box">: Container that centers everything using CSS.
+
+<img id="pic" ...>: The main image shown in the slider. The id="pic" allows JavaScript to target this image.
+
+<button onclick="next()">: Clicking this button calls the next() function.
+
+<button onclick="prev()">: Clicking this button calls the prev() function.
+
+2️⃣ JavaScript Variables
+const images = [
+    "./comp1img.jpeg",
+    "./comp2image.jpeg",
+    "./comp3image.jpeg",
+    "./comp5img.jpeg",
+    "./comp6img.jpeg",
+    "./comp7img.jpeg"
+];
+
+
+images is an array that stores all the image file paths.
+
+const means it cannot be reassigned, but you can still access the elements inside it.
+
+Each element in the array corresponds to an image in your project folder.
+
+let currentIndex = 0;
+currentIndex tracks which image is currently being displayed.
+Starts at 0, which means images[0] (./comp1img.jpeg) is shown first.
+
+const pic = document.getElementById("pic");
+pic is a reference to the <img> element in the HTML.
+
+We use pic.src = ... later to change the image being displayed dynamically.
+
+3️⃣ The next() Function
+function next() {
+    currentIndex++;  // move to the next image
+    if (currentIndex >= images.length) {
+        currentIndex = 0; // if we go past the last image, loop back to the first
+    }
+    pic.src = images[currentIndex]; // change the image shown in the <img> tag
+}
+
+
+Step by step:
+
+currentIndex++ → increases the index by 1.
+
+If currently showing images[2], currentIndex becomes 3.
+
+if (currentIndex >= images.length) → checks if we have moved beyond the last image.
+
+images.length = 6 (because there are 6 images).
+
+If currentIndex is 6 (past the last index 5), it resets to 0.
+
+pic.src = images[currentIndex] → updates the <img> element to show the new image.
+
+✅ Effect: Clicking “next” cycles forward through the images, looping back to the first image after the last.
+
+4️⃣ The prev() Function
+function prev() {
+    currentIndex--;  // move to the previous image
+    if (currentIndex < 0) {
+        currentIndex = images.length - 1; // if we go before the first image, loop to the last
+    }
+    pic.src = images[currentIndex]; // update the image
+}
+
+
+Step by step:
+currentIndex-- → decreases the index by 1.
+
+If currently showing images[2], currentIndex becomes 1.
+
+if (currentIndex < 0) → checks if we moved before the first image.
+
+If currentIndex is -1, it sets currentIndex = images.length - 1 → shows the last image.
+
+pic.src = images[currentIndex] → updates the <img> element with the correct image.
+
+✅ Effect: Clicking “previous” cycles backward through the images, looping to the last image if currently at the first.
+
+5️⃣ How the Slider Works Overall
+
+The <img> tag always displays the image at images[currentIndex].
+
+Clicking “next” or “previous” updates currentIndex appropriately.
+
+The if conditions handle looping, so you can cycle infinitely in either direction.
